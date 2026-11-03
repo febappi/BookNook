@@ -133,3 +133,17 @@
     @apply font-heading tracking-tight;
   }
 }
+
+.hero-slider {
+  --swiper-theme-color: var(--primary);
+  --swiper-pagination-bottom: 1.5rem;
+}
+
+.hero-slider .swiper-pagination-bullet {
+  transition: width 0.3s;
+}
+
+.hero-slider .swiper-pagination-bullet-active {
+  width: 1.5rem;
+  border-radius: 9999px;
+}
