@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Newsreader } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "@/components/ui/toast";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-const newsreader = Newsreader({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-serif",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
@@ -23,10 +22,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={cn("h-full antialiased font-sans", inter.variable, newsreader.variable)}
-    >
+    <html lang="en" className={cn("h-full antialiased font-sans", poppins.variable)}>
       <body className="min-h-full flex flex-col">
         <Navbar user={null} />
         <main className="flex flex-1 flex-col">{children}</main>
