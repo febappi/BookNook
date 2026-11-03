@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import Navbar from "@/components/shared/Navbar";
+import Footer from "@/components/shared/Footer";
+import { Toaster } from "@/components/ui/toast";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -25,7 +28,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn("h-full antialiased font-sans", inter.variable, newsreader.variable)}
     >
       <body className="min-h-full flex flex-col">
-        {children}
+        <Navbar user={null} />
+        <main className="flex flex-1 flex-col">{children}</main>
+        <Footer />
+        <Toaster />
       </body>
     </html>
   );
