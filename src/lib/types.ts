@@ -15,6 +15,21 @@ export type Book = {
   isBorrowedByMe?: boolean;
 };
 
+export type BooksResponse = {
+  books: Book[];
+  total: number;
+  page: number;
+  totalPages: number;
+};
+
+export type BookFilterValues = {
+  search: string;
+  category: string;
+  available: string;
+  sort: string;
+  page: string;
+};
+
 export type Borrow = {
   _id: string;
   bookId: string;
