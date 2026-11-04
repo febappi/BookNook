@@ -11,11 +11,10 @@ export default function Home() {
       <h1 className="sr-only">BookNook - A Small Online Library</h1>
       <HeroSlider />
 
-      <section className="mx-auto w-full max-w-6xl px-4 py-20">
-        <div className="mb-10">
-          <p className="text-sm font-semibold tracking-widest text-primary uppercase">Fresh on the shelf</p>
-          <h2 className="mt-3 text-4xl sm:text-5xl">New Arrivals</h2>
-          <p className="mt-3 max-w-xl text-muted-foreground">The six most recent books added by our readers.</p>
+      <section className="mx-auto w-full max-w-6xl px-4 py-16">
+        <div className="mb-10 text-center">
+          <h2 className="text-3xl font-bold">New Arrivals</h2>
+          <p className="mt-2 text-gray-500">The latest books added to our library</p>
         </div>
         <Suspense fallback={<BookGridSkeleton count={6} />}>
           <NewArrivals />

@@ -1,71 +1,34 @@
 import Link from "next/link";
-import { ArrowUpRight, Atom, Feather, Landmark, Library, Rabbit } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Atom, Baby, BookHeart, Landmark, Library } from "lucide-react";
 
 const categories = [
-  {
-    name: "Fiction",
-    description: "Novels and short stories to get lost in, from timeless classics to new voices.",
-    icon: Feather,
-    style: "bg-[#e3ece1] text-[#2f5d46] sm:col-span-2 lg:row-span-2",
-  },
-  {
-    name: "Science",
-    description: "Big ideas explained clearly.",
-    icon: Atom,
-    style: "bg-[#e1e9ef] text-[#2e5269]",
-  },
-  {
-    name: "History",
-    description: "Stories of people and places.",
-    icon: Landmark,
-    style: "bg-[#f1e5d3] text-[#7a5230]",
-  },
-  {
-    name: "Kids",
-    description: "Picture books and first chapters.",
-    icon: Rabbit,
-    style: "bg-[#f6e2dd] text-[#8e4a40]",
-  },
-  {
-    name: "Others",
-    description: "Poetry, self help and more.",
-    icon: Library,
-    style: "bg-[#ebe8e1] text-[#55534c]",
-  },
+  { name: "Fiction", description: "Novels and stories", icon: BookHeart },
+  { name: "Science", description: "Learn how things work", icon: Atom },
+  { name: "History", description: "People and the past", icon: Landmark },
+  { name: "Kids", description: "Books for children", icon: Baby },
+  { name: "Others", description: "Everything else", icon: Library },
 ];
 
 const PopularCategories = () => {
   return (
-    <section className="mx-auto w-full max-w-6xl px-4 py-20">
-      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-        <div>
-          <p className="text-sm font-semibold tracking-widest text-primary uppercase">Popular categories</p>
-          <h2 className="mt-3 text-4xl sm:text-5xl">Find a shelf that suits you</h2>
-        </div>
-        <p className="max-w-sm text-muted-foreground">
-          Every book in BookNook sits on one of five shelves. Pick one to see what readers have shared.
-        </p>
+    <section className="mx-auto w-full max-w-6xl px-4 py-16">
+      <div className="text-center">
+        <h2 className="text-3xl font-bold">Popular Categories</h2>
+        <p className="mt-2 text-gray-500">Choose a category to see the books inside it</p>
       </div>
 
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
         {categories.map((category) => (
           <Link
             key={category.name}
             href={`/books?category=${category.name}`}
-            className={cn(
-              "group flex min-h-48 flex-col justify-between rounded-lg p-6 transition-transform hover:-translate-y-1",
-              category.style
-            )}
+            className="rounded-2xl border bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:border-primary hover:shadow-md"
           >
-            <div className="flex items-start justify-between">
-              <category.icon className="size-8" />
-              <ArrowUpRight className="size-5 opacity-60 transition-opacity group-hover:opacity-100" />
+            <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <category.icon className="size-6" />
             </div>
-            <div>
-              <h3 className="text-3xl">{category.name}</h3>
-              <p className="mt-2 max-w-xs text-sm leading-relaxed opacity-80">{category.description}</p>
-            </div>
+            <h3 className="mt-4 text-lg font-semibold">{category.name}</h3>
+            <p className="mt-1 text-sm text-gray-500">{category.description}</p>
           </Link>
         ))}
       </div>

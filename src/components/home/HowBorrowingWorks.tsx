@@ -2,43 +2,40 @@ import { BookOpenCheck, RotateCcw, Search } from "lucide-react";
 
 const steps = [
   {
-    number: "01",
     title: "Browse",
-    description: "Look through the shelves, search by title or author, and open any book to read its details.",
+    description: "Search books by title or author and open any book to see its details.",
     icon: Search,
   },
   {
-    number: "02",
     title: "Borrow",
-    description: "Press Borrow This Book and confirm. The book is yours for seven days and appears in My Borrows.",
+    description: "Click Borrow This Book and confirm. You can keep the book for 7 days.",
     icon: BookOpenCheck,
   },
   {
-    number: "03",
     title: "Return",
-    description: "Finished reading? Return it from My Borrows so the copy goes back on the shelf for the next reader.",
+    description: "Return the book from My Borrows so another reader can borrow it.",
     icon: RotateCcw,
   },
 ];
 
 const HowBorrowingWorks = () => {
   return (
-    <section className="bg-primary text-primary-foreground">
-      <div className="mx-auto max-w-6xl px-4 py-20">
-        <div className="max-w-2xl">
-          <p className="text-sm font-semibold tracking-widest uppercase opacity-80">How borrowing works</p>
-          <h2 className="mt-3 text-4xl sm:text-5xl">Three simple steps, from shelf to reader and back</h2>
+    <section className="bg-gray-50">
+      <div className="mx-auto max-w-6xl px-4 py-16">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold">How Borrowing Works</h2>
+          <p className="mt-2 text-gray-500">Borrowing a book from BookNook takes only three steps</p>
         </div>
 
-        <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-0 md:divide-x md:divide-primary-foreground/20">
-          {steps.map((step) => (
-            <div key={step.number} className="md:px-8 md:first:pl-0 md:last:pr-0">
-              <div className="flex items-center justify-between">
-                <span className="font-heading text-6xl opacity-40">{step.number}</span>
-                <step.icon className="size-8 opacity-90" />
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {steps.map((step, index) => (
+            <div key={step.title} className="rounded-2xl bg-white p-8 text-center shadow-sm">
+              <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <step.icon className="size-7" />
               </div>
-              <h3 className="mt-6 text-2xl">{step.title}</h3>
-              <p className="mt-3 leading-relaxed opacity-80">{step.description}</p>
+              <p className="mt-5 text-sm font-medium text-primary">Step {index + 1}</p>
+              <h3 className="mt-1 text-xl font-semibold">{step.title}</h3>
+              <p className="mt-3 text-gray-500">{step.description}</p>
             </div>
           ))}
         </div>
