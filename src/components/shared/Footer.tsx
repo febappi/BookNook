@@ -23,19 +23,21 @@ const socialLinks = [
 const exploreLinks = [
   { href: "/", label: "Home" },
   { href: "/books", label: "All Books" },
-  { href: "/books?category=Fiction", label: "Fiction Shelf" },
-  { href: "/books?category=Kids", label: "Kids Corner" },
+  { href: "/books?category=Fiction", label: "Fiction Books" },
+  { href: "/books?category=Kids", label: "Kids Books" },
 ];
 
 const Footer = () => {
   return (
-    <footer className="mt-auto border-t bg-secondary">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="mt-auto bg-gray-900 text-gray-300">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2">
-          <Logo />
-          <p className="mt-4 max-w-sm leading-relaxed text-muted-foreground">
-            A small community library on the web. Share the books on your shelf and borrow the ones you have been
-            meaning to read.
+          <div className="text-white">
+            <Logo />
+          </div>
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-gray-400">
+            BookNook is a small online library where readers can add books, borrow books for 7 days and return them
+            when they are done.
           </p>
           <div className="mt-6 flex gap-2">
             {socialLinks.map((social) => (
@@ -45,7 +47,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="flex size-10 items-center justify-center rounded-md border bg-background text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+                className="flex size-10 items-center justify-center rounded-full bg-gray-800 text-gray-300 transition-colors hover:bg-primary hover:text-white"
               >
                 <svg viewBox="0 0 24 24" className="size-4" fill="currentColor" aria-hidden="true">
                   <path d={social.path} />
@@ -56,11 +58,11 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className="text-lg">Explore</h3>
+          <h3 className="text-lg font-semibold text-white">Quick Links</h3>
           <ul className="mt-4 space-y-3 text-sm">
             {exploreLinks.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-muted-foreground hover:text-foreground">
+                <Link href={link.href} className="text-gray-400 hover:text-primary">
                   {link.label}
                 </Link>
               </li>
@@ -69,11 +71,11 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className="text-lg">Contact</h3>
-          <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+          <h3 className="text-lg font-semibold text-white">Contact Us</h3>
+          <ul className="mt-4 space-y-3 text-sm text-gray-400">
             <li className="flex items-start gap-2.5">
               <Mail className="mt-0.5 size-4 shrink-0 text-primary" />
-              <a href="mailto:hello@booknook.com" className="hover:text-foreground">
+              <a href="mailto:hello@booknook.com" className="hover:text-primary">
                 hello@booknook.com
               </a>
             </li>
@@ -89,8 +91,8 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t">
-        <p className="mx-auto max-w-6xl px-4 py-5 text-center text-sm text-muted-foreground">
+      <div className="border-t border-gray-800">
+        <p className="mx-auto max-w-6xl px-4 py-5 text-center text-sm text-gray-500">
           © {new Date().getFullYear()} BookNook. All rights reserved.
         </p>
       </div>

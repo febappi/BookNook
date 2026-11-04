@@ -34,7 +34,7 @@ const Navbar = ({ user }: { user: SessionUser | null }) => {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b bg-background">
+    <header className="sticky top-0 z-40 bg-white shadow-sm">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
         <Logo />
 
@@ -44,10 +44,8 @@ const Navbar = ({ user }: { user: SessionUser | null }) => {
               key={link.href}
               href={link.href}
               className={cn(
-                "border-b-2 py-1 text-sm font-medium transition-colors",
-                isActive(link.href)
-                  ? "border-primary text-primary"
-                  : "border-transparent text-muted-foreground hover:text-foreground"
+                "font-medium transition-colors hover:text-primary",
+                isActive(link.href) ? "text-primary" : "text-gray-600"
               )}
             >
               {link.label}
@@ -58,7 +56,7 @@ const Navbar = ({ user }: { user: SessionUser | null }) => {
         <div className="flex items-center gap-2">
           {!user && (
             <div className="hidden items-center gap-2 lg:flex">
-              <Link href="/login" className={buttonVariants({ variant: "ghost" })}>
+              <Link href="/login" className={buttonVariants({ variant: "outline" })}>
                 Login
               </Link>
               <Link href="/register" className={buttonVariants()}>
@@ -75,7 +73,7 @@ const Navbar = ({ user }: { user: SessionUser | null }) => {
             </SheetTrigger>
             <SheetContent side="right" className="w-72">
               <SheetHeader className="border-b">
-                <SheetTitle className="font-heading text-xl">Menu</SheetTitle>
+                <SheetTitle className="text-lg font-semibold">Menu</SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col px-3 py-4">
                 {links.map((link) => (
@@ -85,7 +83,7 @@ const Navbar = ({ user }: { user: SessionUser | null }) => {
                     onClick={() => setIsMenuOpen(false)}
                     className={cn(
                       "rounded-md px-3 py-3 text-base font-medium",
-                      isActive(link.href) ? "bg-accent text-accent-foreground" : "hover:bg-muted"
+                      isActive(link.href) ? "bg-accent text-primary" : "hover:bg-muted"
                     )}
                   >
                     {link.label}
