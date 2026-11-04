@@ -22,13 +22,10 @@ const AllBooksPage = async ({ searchParams }: PageProps<"/books">) => {
   };
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:py-16">
-      <div className="mb-8">
-        <p className="text-sm font-semibold tracking-widest text-primary uppercase">The library</p>
-        <h1 className="mt-3 text-4xl sm:text-5xl">All Books</h1>
-        <p className="mt-3 max-w-xl text-muted-foreground">
-          Every book shared by the BookNook community. Search, filter by shelf, or show only what is available now.
-        </p>
+    <div className="mx-auto w-full max-w-6xl px-4 py-12">
+      <div className="mb-8 text-center">
+        <h1 className="text-3xl font-bold sm:text-4xl">All Books</h1>
+        <p className="mt-2 text-gray-500">Search and borrow books from our library</p>
       </div>
 
       <BookFilters filters={filters} />

@@ -23,7 +23,7 @@ const BookFilters = ({ filters }: { filters: BookFilterValues }) => {
   };
 
   return (
-    <div className="grid gap-3 rounded-lg border bg-card p-4 lg:grid-cols-[1fr_auto_auto_auto]">
+    <div className="grid gap-3 rounded-2xl border bg-white p-4 shadow-sm lg:grid-cols-[1fr_auto_auto_auto]">
       <form key={filters.search} onSubmit={handleSearch} className="flex gap-2">
         <Input
           name="search"

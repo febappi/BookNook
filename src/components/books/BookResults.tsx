@@ -22,8 +22,8 @@ const BookResults = async ({ filters }: { filters: BookFilterValues }) => {
 
   if (!data) {
     return (
-      <p className="mt-8 rounded-lg border bg-card p-8 text-center text-muted-foreground">
-        We could not load the books right now. Please refresh the page in a moment.
+      <p className="mt-8 rounded-2xl border bg-white p-8 text-center text-gray-500">
+        Could not load the books right now. Please try again later.
       </p>
     );
   }
@@ -31,14 +31,12 @@ const BookResults = async ({ filters }: { filters: BookFilterValues }) => {
   if (data.books.length === 0) {
     const hasFilters = Object.values(filters).some((value) => value);
     return (
-      <div className="mt-8 flex flex-col items-center gap-4 rounded-lg border border-dashed bg-card px-6 py-16 text-center">
-        <SearchX className="size-10 text-primary" />
+      <div className="mt-8 flex flex-col items-center gap-4 rounded-2xl border border-dashed bg-white px-6 py-16 text-center">
+        <SearchX className="size-12 text-primary" />
         <div>
-          <h2 className="text-2xl">No books found</h2>
-          <p className="mt-2 text-muted-foreground">
-            {hasFilters
-              ? "Nothing matches your search. Try a different word or clear the filters."
-              : "No one has added a book yet. Share one from your shelf to get things started."}
+          <h2 className="text-xl font-semibold">No books found</h2>
+          <p className="mt-2 text-gray-500">
+            {hasFilters ? "Try another search or clear the filters." : "No one has added a book yet."}
           </p>
         </div>
         <Link href={hasFilters ? "/books" : "/add-book"} className={buttonVariants()}>
@@ -53,7 +51,7 @@ const BookResults = async ({ filters }: { filters: BookFilterValues }) => {
 
   return (
     <>
-      <p className="mt-8 mb-5 text-sm text-muted-foreground">
+      <p className="mt-8 mb-5 text-sm text-gray-500">
         Showing {firstBookNumber} to {lastBookNumber} of {data.total} {data.total === 1 ? "book" : "books"}
       </p>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
