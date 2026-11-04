@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "@/components/ui/toast";
+import { getSessionUser } from "@/lib/session";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,11 +21,13 @@ export const metadata: Metadata = {
   description: "BookNook is a small online library. Add a book, borrow a book, return a book.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const user = await getSessionUser();
+
   return (
     <html lang="en" className={cn("h-full antialiased font-sans", poppins.variable)}>
       <body className="min-h-full flex flex-col">
-        <Navbar user={null} />
+        <Navbar user={user} />
         <main className="flex flex-1 flex-col">{children}</main>
         <Footer />
         <Toaster />

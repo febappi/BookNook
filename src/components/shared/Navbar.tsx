@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import Logo from "./Logo";
+import UserMenu from "./UserMenu";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
@@ -54,6 +55,7 @@ const Navbar = ({ user }: { user: SessionUser | null }) => {
         </nav>
 
         <div className="flex items-center gap-2">
+          {user && <UserMenu user={user} />}
           {!user && (
             <div className="hidden items-center gap-2 lg:flex">
               <Link href="/login" className={buttonVariants({ variant: "outline" })}>
