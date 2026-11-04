@@ -11,6 +11,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "@/components/ui/toast";
 import { apiFetch } from "@/lib/api";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { getBookLink } from "@/lib/book-link";
 import { cn } from "@/lib/utils";
 import { Borrow } from "@/lib/types";
 
@@ -87,7 +88,7 @@ const MyBorrowList = ({ borrows }: { borrows: Borrow[] }) => {
                     <div className="relative h-16 w-12 shrink-0 overflow-hidden rounded-md bg-gray-100">
                       <Image src={borrow.bookImage} alt={borrow.bookTitle} fill sizes="48px" className="object-contain" />
                     </div>
-                    <Link href={`/books/${borrow.bookId}`} className="max-w-xs truncate font-medium hover:text-primary">
+                    <Link href={getBookLink(borrow.bookId, borrow.bookTitle)} className="max-w-xs truncate font-medium hover:text-primary">
                       {borrow.bookTitle}
                     </Link>
                   </div>
@@ -117,7 +118,7 @@ const MyBorrowList = ({ borrows }: { borrows: Borrow[] }) => {
                 <Image src={borrow.bookImage} alt={borrow.bookTitle} fill sizes="64px" className="object-contain" />
               </div>
               <div className="min-w-0 flex-1">
-                <Link href={`/books/${borrow.bookId}`} className="line-clamp-2 font-semibold hover:text-primary">
+                <Link href={getBookLink(borrow.bookId, borrow.bookTitle)} className="line-clamp-2 font-semibold hover:text-primary">
                   {borrow.bookTitle}
                 </Link>
                 <div className="mt-2">

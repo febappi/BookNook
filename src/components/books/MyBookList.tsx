@@ -13,6 +13,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { toast } from "@/components/ui/toast";
 import { apiFetch } from "@/lib/api";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { getBookLink } from "@/lib/book-link";
 import { Book, BookInput, SessionUser } from "@/lib/types";
 
 const MyBookList = ({ books, user }: { books: Book[]; user: SessionUser }) => {
@@ -77,7 +78,7 @@ const MyBookList = ({ books, user }: { books: Book[]; user: SessionUser }) => {
             </div>
 
             <div className="grid grid-cols-3 gap-2 sm:flex">
-              <Link href={`/books/${book._id}`} className={buttonVariants({ variant: "outline" })}>
+              <Link href={getBookLink(book._id, book.title)} className={buttonVariants({ variant: "outline" })}>
                 <Eye />
                 View
               </Link>

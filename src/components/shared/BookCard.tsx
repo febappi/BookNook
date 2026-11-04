@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import CategoryBadge from "./CategoryBadge";
 import { buttonVariants } from "@/components/ui/button";
+import { getBookLink } from "@/lib/book-link";
 import { cn } from "@/lib/utils";
 import { Book } from "@/lib/types";
 
@@ -29,7 +30,7 @@ const BookCard = ({ book }: { book: Book }) => {
         </div>
         <h3 className="mt-3 line-clamp-2 min-h-[2lh] text-lg font-semibold">{book.title}</h3>
         <p className="mt-1 text-sm text-gray-500">by {book.author}</p>
-        <Link href={`/books/${book._id}`} className={cn(buttonVariants(), "mt-5 w-full")}>
+        <Link href={getBookLink(book._id, book.title)} className={cn(buttonVariants(), "mt-5 w-full")}>
           View Details
         </Link>
       </div>

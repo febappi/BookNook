@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import BorrowSection from "@/components/books/BorrowSection";
 import CategoryBadge from "@/components/shared/CategoryBadge";
+import { getBookIdFromSlug } from "@/lib/book-link";
 import { requireUser, getServerToken } from "@/lib/session";
 import { Book } from "@/lib/types";
 
@@ -12,9 +13,10 @@ export const metadata: Metadata = {
   title: "Book Details",
 };
 
-const BookDetailsPage = async ({ params }: PageProps<"/books/[id]">) => {
-  const { id } = await params;
-  const user = await requireUser(`/books/${id}`);
+const BookDetailsPage = async ({ params }: PageProps<"/books/[slug]">) => {
+  const { slug } = await params;
+  const user = await requireUser(`/books/${slug}`);
+  const id = getBookIdFromSlug(slug);
   const token = await getServerToken();
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books/${id}`, {
