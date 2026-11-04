@@ -11,10 +11,17 @@ import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/components/ui/toast";
 import { authClient } from "@/lib/auth-client";
 
-const LoginForm = ({ redirectTo }: { redirectTo: string }) => {
+const getGoogleErrorMessage = (code: string) => {
+  if (!code) {
+    return "";
+  }
+  return `Google login failed (${code.replace(/_/g, " ")}). Please try again.`;
+};
+
+const LoginForm = ({ redirectTo, googleError }: { redirectTo: string; googleError: string }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(getGoogleErrorMessage(googleError));
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

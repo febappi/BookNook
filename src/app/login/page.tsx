@@ -17,6 +17,7 @@ const getSafeRedirect = (value: string | string[] | undefined) => {
 const LoginPage = async ({ searchParams }: PageProps<"/login">) => {
   const params = await searchParams;
   const redirectTo = getSafeRedirect(params.redirect);
+  const googleError = typeof params.error === "string" ? params.error : "";
 
   const user = await getSessionUser();
   if (user) {
@@ -25,7 +26,7 @@ const LoginPage = async ({ searchParams }: PageProps<"/login">) => {
 
   return (
     <div className="flex flex-1 items-center justify-center bg-gray-50 px-4 py-12">
-      <LoginForm redirectTo={redirectTo} />
+      <LoginForm redirectTo={redirectTo} googleError={googleError} />
     </div>
   );
 };
