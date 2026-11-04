@@ -18,7 +18,7 @@ import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/components/ui/toast";
 import { apiFetch } from "@/lib/api";
-import { getToken } from "@/lib/auth-client";
+import { getAuthHeaders } from "@/lib/auth-client";
 import { Book, SessionUser } from "@/lib/types";
 
 const BorrowSection = ({ book, user }: { book: Book; user: SessionUser }) => {
@@ -29,13 +29,9 @@ const BorrowSection = ({ book, user }: { book: Book; user: SessionUser }) => {
   const handleConfirmBorrow = async () => {
     setLoading(true);
     try {
-      const token = await getToken();
-      if (!token) {
-        throw new Error("Your session has expired. Please login again.");
-      }
       await apiFetch("/borrows", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        headers: await getAuthHeaders(),
         body: JSON.stringify({ bookId: book._id }),
       });
       toast.add({ title: "Book borrowed successfully. Enjoy reading!", type: "success" });
