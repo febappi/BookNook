@@ -6,7 +6,7 @@
 
 BookNook is a small online library where readers can share the books they own, browse books added by other readers, borrow a book for 7 days and return it when they are done.
 
-**Live Site:** _will be added after deployment_
+**Live Site:** [booknook-febappi.netlify.app](https://booknook-febappi.netlify.app)
 
 <br>
 
