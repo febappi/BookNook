@@ -20,6 +20,7 @@ type ConfirmDialogProps = {
   confirmLabel: string;
   isLoading: boolean;
   onConfirm: () => void;
+  confirmVariant?: "default" | "destructive";
 };
 
 const ConfirmDialog = ({
@@ -30,6 +31,7 @@ const ConfirmDialog = ({
   confirmLabel,
   isLoading,
   onConfirm,
+  confirmVariant = "destructive",
 }: ConfirmDialogProps) => {
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
@@ -40,7 +42,7 @@ const ConfirmDialog = ({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel disabled={isLoading}>Cancel</AlertDialogCancel>
-          <AlertDialogAction variant="destructive" disabled={isLoading} onClick={onConfirm}>
+          <AlertDialogAction variant={confirmVariant} disabled={isLoading} onClick={onConfirm}>
             {isLoading && <Spinner />}
             {confirmLabel}
           </AlertDialogAction>
