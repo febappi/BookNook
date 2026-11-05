@@ -29,17 +29,15 @@ const exploreLinks = [
 
 const Footer = () => {
   return (
-    <footer className="mt-auto bg-gray-900 text-gray-300">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-4 py-12 lg:grid-cols-4">
-        <div className="col-span-2">
-          <div className="text-white">
-            <Logo />
-          </div>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-gray-400">
+    <footer className="mt-auto bg-ink text-white">
+      <div className="mx-auto grid max-w-6xl md:grid-cols-12">
+        <div className="border-b border-white/20 px-4 py-10 md:col-span-6 md:border-r md:border-b-0 md:py-12">
+          <Logo variant="dark" />
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/70">
             BookNook is a small online library where readers can add books, borrow books for 7 days and return them
             when they are done.
           </p>
-          <div className="mt-6 flex gap-2">
+          <div className="mt-8 flex">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
@@ -47,7 +45,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="flex size-10 items-center justify-center rounded-full bg-gray-800 text-gray-300 transition-colors hover:bg-primary hover:text-white"
+                className="-ml-px flex size-11 items-center justify-center border border-white/30 transition-colors first:ml-0 hover:z-10 hover:border-cobalt hover:bg-cobalt"
               >
                 <svg viewBox="0 0 24 24" className="size-4" fill="currentColor" aria-hidden="true">
                   <path d={social.path} />
@@ -57,40 +55,49 @@ const Footer = () => {
           </div>
         </div>
 
-        <div>
-          <h3 className="text-lg font-semibold text-white">Quick Links</h3>
-          <ul className="mt-4 space-y-3 text-sm">
-            {exploreLinks.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="text-gray-400 hover:text-primary">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <div className="grid grid-cols-2 md:col-span-6">
+          <div className="border-r border-white/20 px-4 py-10 md:px-8 md:py-12">
+            <h3 className="font-sans text-xs font-semibold tracking-[0.15em] text-white/50 uppercase">Quick Links</h3>
+            <ul className="mt-5 space-y-3 text-sm font-medium">
+              {exploreLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="transition-colors hover:text-cobalt">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <div>
-          <h3 className="text-lg font-semibold text-white">Contact Us</h3>
-          <ul className="mt-4 space-y-3 text-sm text-gray-400">
-            <li className="flex items-start gap-2.5">
-              <Mail className="mt-0.5 size-4 shrink-0 text-primary" />
-              <a href="mailto:hello@booknook.com" className="min-w-0 break-all hover:text-primary">
-                hello@booknook.com
-              </a>
-            </li>
-            <li className="flex items-start gap-2.5">
-              <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
-              <span>Dhaka</span>
-            </li>
-          </ul>
+          <div className="px-4 py-10 md:px-8 md:py-12">
+            <h3 className="font-sans text-xs font-semibold tracking-[0.15em] text-white/50 uppercase">Contact Us</h3>
+            <ul className="mt-5 space-y-3 text-sm font-medium">
+              <li className="flex items-start gap-2.5">
+                <Mail className="mt-0.5 size-4 shrink-0" />
+                <a href="mailto:hello@booknook.com" className="min-w-0 break-all transition-colors hover:text-cobalt">
+                  hello@booknook.com
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <MapPin className="mt-0.5 size-4 shrink-0" />
+                <span>Dhaka</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div className="border-t border-gray-800">
-        <p className="mx-auto max-w-6xl px-4 py-5 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} BookNook. All rights reserved.
+      <div className="overflow-hidden border-t border-white/20">
+        <p className="mx-auto max-w-6xl px-4 pt-6 font-display text-[min(15vw,10.5rem)] leading-[0.8] tracking-tighter uppercase select-none">
+          BookNook
         </p>
+      </div>
+
+      <div className="border-t border-white/20">
+        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-2 px-4 py-5 text-xs font-semibold tracking-[0.1em] text-white/50 uppercase sm:flex-row">
+          <p>© {new Date().getFullYear()} BookNook. All rights reserved.</p>
+          <p>Add a book · Borrow a book · Return a book</p>
+        </div>
       </div>
     </footer>
   );
