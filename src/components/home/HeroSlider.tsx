@@ -1,13 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 const slides = [
   {
@@ -28,6 +29,21 @@ const slides = [
 ];
 
 const HeroSlider = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
+
+  const getTextAnimation = (index: number, delay: number) => {
+    if (reduceMotion) {
+      return {};
+    }
+    const isActive = index === activeIndex;
+    return {
+      initial: { opacity: 0, y: 24 },
+      animate: isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 },
+      transition: { duration: 0.6, delay: isActive ? delay : 0, ease: "easeOut" as const },
+    };
+  };
+
   return (
     <section>
       <Swiper
@@ -35,6 +51,7 @@ const HeroSlider = () => {
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         loop
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         className="hero-slider"
       >
         {slides.map((slide, index) => (
@@ -50,11 +67,17 @@ const HeroSlider = () => {
               />
               <div className="absolute inset-0 bg-black/60" />
               <div className="relative mx-auto flex h-full max-w-3xl flex-col items-center justify-center px-4 text-center text-white">
-                <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">{slide.title}</h2>
-                <p className="mt-4 max-w-xl text-base text-gray-200 sm:text-lg">{slide.description}</p>
-                <Link href="/books" className={cn(buttonVariants({ size: "lg" }), "mt-8")}>
-                  Browse Books
-                </Link>
+                <motion.h2 {...getTextAnimation(index, 0.1)} className="text-3xl font-bold sm:text-4xl md:text-5xl">
+                  {slide.title}
+                </motion.h2>
+                <motion.p {...getTextAnimation(index, 0.25)} className="mt-4 max-w-xl text-base text-gray-200 sm:text-lg">
+                  {slide.description}
+                </motion.p>
+                <motion.div {...getTextAnimation(index, 0.4)} className="mt-8">
+                  <Link href="/books" className={buttonVariants({ size: "lg" })}>
+                    Browse Books
+                  </Link>
+                </motion.div>
               </div>
             </div>
           </SwiperSlide>

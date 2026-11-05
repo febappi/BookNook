@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, BookPlus } from "lucide-react";
 import BookCard from "@/components/shared/BookCard";
+import Reveal from "@/components/shared/Reveal";
 import { buttonVariants } from "@/components/ui/button";
 import { apiFetch } from "@/lib/api";
 import { cn } from "@/lib/utils";
@@ -40,16 +41,18 @@ const NewArrivals = async () => {
   return (
     <>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {data.books.map((book) => (
-          <BookCard key={book._id} book={book} />
+        {data.books.map((book, index) => (
+          <Reveal key={book._id} delay={(index % 3) * 0.1} className="h-full">
+            <BookCard book={book} />
+          </Reveal>
         ))}
       </div>
-      <div className="mt-10 flex justify-center">
+      <Reveal className="mt-10 flex justify-center">
         <Link href="/books" className={cn(buttonVariants({ variant: "outline", size: "lg" }), "border-primary text-primary")}>
           See All Books
           <ArrowRight data-icon="inline-end" />
         </Link>
-      </div>
+      </Reveal>
     </>
   );
 };

@@ -4,6 +4,7 @@ import NewArrivals from "@/components/home/NewArrivals";
 import HowBorrowingWorks from "@/components/home/HowBorrowingWorks";
 import PopularCategories from "@/components/home/PopularCategories";
 import BookGridSkeleton from "@/components/shared/BookGridSkeleton";
+import Reveal from "@/components/shared/Reveal";
 
 export default function Home() {
   return (
@@ -12,10 +13,10 @@ export default function Home() {
       <HeroSlider />
 
       <section className="mx-auto w-full max-w-6xl px-4 py-16">
-        <div className="mb-10 text-center">
+        <Reveal className="mb-10 text-center">
           <h2 className="text-3xl font-bold">New Arrivals</h2>
           <p className="mt-2 text-gray-500">The latest books added to our library</p>
-        </div>
+        </Reveal>
         <Suspense fallback={<BookGridSkeleton count={6} />}>
           <NewArrivals />
         </Suspense>

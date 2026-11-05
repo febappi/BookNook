@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SearchX } from "lucide-react";
 import BookCard from "@/components/shared/BookCard";
+import Reveal from "@/components/shared/Reveal";
 import BookPagination from "./BookPagination";
 import { buttonVariants } from "@/components/ui/button";
 import { apiFetch } from "@/lib/api";
@@ -55,8 +56,10 @@ const BookResults = async ({ filters }: { filters: BookFilterValues }) => {
         Showing {firstBookNumber} to {lastBookNumber} of {data.total} {data.total === 1 ? "book" : "books"}
       </p>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {data.books.map((book) => (
-          <BookCard key={book._id} book={book} />
+        {data.books.map((book, index) => (
+          <Reveal key={book._id} delay={(index % 3) * 0.1} className="h-full">
+            <BookCard book={book} />
+          </Reveal>
         ))}
       </div>
       <BookPagination filters={filters} currentPage={data.page} totalPages={data.totalPages} />
