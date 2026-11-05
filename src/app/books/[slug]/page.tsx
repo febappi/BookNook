@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cache } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -6,29 +7,39 @@ import { ArrowLeft } from "lucide-react";
 import BorrowSection from "@/components/books/BorrowSection";
 import CategoryBadge from "@/components/shared/CategoryBadge";
 import { getBookIdFromSlug } from "@/lib/book-link";
-import { requireUser, getServerToken } from "@/lib/session";
+import { getSessionUser, requireUser, getServerToken } from "@/lib/session";
 import { Book } from "@/lib/types";
 
-export const metadata: Metadata = {
-  title: "Book Details",
+const loadBook = cache(async (id: string) => {
+  const token = await getServerToken();
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books/${id}`, {
+    cache: "no-store",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const book: Book | null = res.ok ? await res.json() : null;
+  return { status: res.status, book };
+});
+
+export const generateMetadata = async ({ params }: PageProps<"/books/[slug]">): Promise<Metadata> => {
+  const { slug } = await params;
+  const user = await getSessionUser();
+  if (!user) {
+    return { title: "Book Details" };
+  }
+  const { book } = await loadBook(getBookIdFromSlug(slug));
+  return { title: book ? book.title : "Book Details" };
 };
 
 const BookDetailsPage = async ({ params }: PageProps<"/books/[slug]">) => {
   const { slug } = await params;
   const user = await requireUser(`/books/${slug}`);
-  const id = getBookIdFromSlug(slug);
-  const token = await getServerToken();
+  const { status, book } = await loadBook(getBookIdFromSlug(slug));
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books/${id}`, {
-    cache: "no-store",
-    headers: { Authorization: `Bearer ${token}` },
-  });
-
-  if (res.status === 400 || res.status === 404) {
+  if (status === 400 || status === 404) {
     notFound();
   }
 
-  if (!res.ok) {
+  if (!book) {
     return (
       <div className="mx-auto w-full max-w-6xl px-4 py-16">
         <p className="rounded-2xl border bg-white p-8 text-center text-gray-500">
@@ -38,7 +49,6 @@ const BookDetailsPage = async ({ params }: PageProps<"/books/[slug]">) => {
     );
   }
 
-  const book: Book = await res.json();
   const borrowedCopies = book.totalCopies - book.availableCopies;
 
   return (

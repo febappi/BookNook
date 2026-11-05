@@ -10,14 +10,14 @@ const BookCard = ({ book }: { book: Book }) => {
   const isAvailable = book.availableCopies > 0;
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-sm transition hover:shadow-md">
-      <div className="relative h-64 bg-gray-100">
+    <div className="group flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <div className="relative h-64 overflow-hidden bg-gray-100">
         <Image
           src={book.image}
           alt={book.title}
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-contain p-4"
+          className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
         />
       </div>
 
