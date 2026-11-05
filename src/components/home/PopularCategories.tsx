@@ -17,12 +17,12 @@ const PopularCategories = () => {
         <p className="mt-2 text-gray-500">Choose a category to see the books inside it</p>
       </div>
 
-      <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+      <div className="mt-10 flex flex-wrap justify-center gap-4">
         {categories.map((category) => (
           <Link
             key={category.name}
             href={`/books?category=${category.name}`}
-            className="rounded-2xl border bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:border-primary hover:shadow-md"
+            className="w-[calc((100%-1rem)/2)] rounded-2xl border bg-white p-4 text-center shadow-sm transition hover:-translate-y-1 hover:border-primary hover:shadow-md sm:p-6 md:w-[calc((100%-2rem)/3)] lg:w-[calc((100%-4rem)/5)]"
           >
             <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
               <category.icon className="size-6" />

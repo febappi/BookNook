@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import Logo from "./Logo";
 
 const socialLinks = [
@@ -30,8 +30,8 @@ const exploreLinks = [
 const Footer = () => {
   return (
     <footer className="mt-auto bg-gray-900 text-gray-300">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="sm:col-span-2">
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-4 py-12 lg:grid-cols-4">
+        <div className="col-span-2">
           <div className="text-white">
             <Logo />
           </div>
@@ -75,7 +75,7 @@ const Footer = () => {
           <ul className="mt-4 space-y-3 text-sm text-gray-400">
             <li className="flex items-start gap-2.5">
               <Mail className="mt-0.5 size-4 shrink-0 text-primary" />
-              <a href="mailto:hello@booknook.com" className="hover:text-primary">
+              <a href="mailto:hello@booknook.com" className="min-w-0 break-all hover:text-primary">
                 hello@booknook.com
               </a>
             </li>

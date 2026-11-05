@@ -37,7 +37,7 @@ const BookFilters = ({ filters }: { filters: BookFilterValues }) => {
         </Button>
       </form>
 
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:contents">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:contents">
         <NativeSelect
           value={filters.category}
           onChange={(e) => updateFilters({ category: e.target.value })}
@@ -66,7 +66,7 @@ const BookFilters = ({ filters }: { filters: BookFilterValues }) => {
           value={filters.sort}
           onChange={(e) => updateFilters({ sort: e.target.value })}
           aria-label="Sort books"
-          className="w-full lg:w-44"
+          className="col-span-2 w-full sm:col-span-1 lg:w-44"
         >
           <NativeSelectOption value="">Newest first</NativeSelectOption>
           <NativeSelectOption value="oldest">Oldest first</NativeSelectOption>
