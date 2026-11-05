@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import Logo from "./Logo";
 import UserMenu from "./UserMenu";
+import ScrollTopLink from "./ScrollTopLink";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
@@ -41,7 +42,7 @@ const Navbar = ({ user }: { user: SessionUser | null }) => {
 
         <nav className="hidden items-center gap-1 lg:flex">
           {links.map((link) => (
-            <Link
+            <ScrollTopLink
               key={link.href}
               href={link.href}
               className={cn(
@@ -50,7 +51,7 @@ const Navbar = ({ user }: { user: SessionUser | null }) => {
               )}
             >
               {link.label}
-            </Link>
+            </ScrollTopLink>
           ))}
         </nav>
 
@@ -79,7 +80,7 @@ const Navbar = ({ user }: { user: SessionUser | null }) => {
               </SheetHeader>
               <nav className="flex flex-col">
                 {links.map((link, index) => (
-                  <Link
+                  <ScrollTopLink
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsMenuOpen(false)}
@@ -90,7 +91,7 @@ const Navbar = ({ user }: { user: SessionUser | null }) => {
                   >
                     <span className="text-xs opacity-50">0{index + 1}</span>
                     {link.label}
-                  </Link>
+                  </ScrollTopLink>
                 ))}
               </nav>
               {!user && (

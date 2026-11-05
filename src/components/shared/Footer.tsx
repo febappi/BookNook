@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
 import Logo from "./Logo";
+import ScrollTopLink from "./ScrollTopLink";
 
 const socialLinks = [
   {
@@ -61,9 +61,9 @@ const Footer = () => {
             <ul className="mt-5 space-y-3 text-sm font-medium">
               {exploreLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="transition-colors hover:text-cobalt">
+                  <ScrollTopLink href={link.href} className="transition-colors hover:text-cobalt">
                     {link.label}
-                  </Link>
+                  </ScrollTopLink>
                 </li>
               ))}
             </ul>
@@ -86,13 +86,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
-      <div className="overflow-hidden border-t border-white/20">
-        <p className="mx-auto max-w-6xl px-4 pt-6 font-display text-[min(15vw,10.5rem)] leading-[0.8] tracking-tighter uppercase select-none">
-          BookNook
-        </p>
-      </div>
-
       <div className="border-t border-white/20">
         <div className="mx-auto flex max-w-6xl flex-col justify-between gap-2 px-4 py-5 text-xs font-semibold tracking-[0.1em] text-white/50 uppercase sm:flex-row">
           <p>© {new Date().getFullYear()} BookNook. All rights reserved.</p>
