@@ -29,9 +29,9 @@ const HowBorrowingWorks = () => {
             <Reveal
               key={step.title}
               delay={index * 0.12}
-              className="h-full border-b border-white/40 md:border-r md:border-b-0 md:last:border-r-0"
+              className="h-full border-b border-white/40 md:border-r md:border-b-0 md:px-8 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
             >
-              <li className="flex h-full flex-col py-8 md:px-8 md:first:pl-0">
+              <li className="flex h-full flex-col py-8">
                 <span className="font-display text-[5.5rem] leading-none tracking-tighter">0{index + 1}</span>
                 <h3 className="mt-6 text-2xl uppercase">{step.title}</h3>
                 <p className="mt-3 max-w-xs leading-relaxed text-white/80">{step.description}</p>
