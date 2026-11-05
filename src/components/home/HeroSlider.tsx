@@ -55,7 +55,7 @@ const HeroSlider = () => {
     <section className="border-b-2 border-ink">
       <Swiper
         modules={[Autoplay, Pagination]}
-        autoplay={{ delay: 6000, disableOnInteraction: false }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         pagination={{ el: ".hero-pagination", clickable: true }}
         loop
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
