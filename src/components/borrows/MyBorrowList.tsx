@@ -29,17 +29,17 @@ const formatDate = (date: string) => {
 const getBorrowStatus = (returnDate: string) => {
   const daysLeft = Math.ceil((new Date(returnDate).getTime() - Date.now()) / ONE_DAY);
   if (daysLeft < 0) {
-    return { label: "Overdue", className: "bg-red-100 text-red-700" };
+    return { label: "Overdue", className: "bg-destructive text-white" };
   }
   if (daysLeft <= 2) {
-    return { label: "Due soon", className: "bg-amber-100 text-amber-700" };
+    return { label: "Due soon", className: "bg-signal text-ink" };
   }
-  return { label: "Borrowed", className: "bg-green-100 text-green-700" };
+  return { label: "Borrowed", className: "bg-cobalt text-white" };
 };
 
 const StatusBadge = ({ returnDate }: { returnDate: string }) => {
   const status = getBorrowStatus(returnDate);
-  return <span className={cn("rounded-full px-3 py-1 text-xs font-medium", status.className)}>{status.label}</span>;
+  return <span className={cn("px-2 py-1 text-[11px] font-semibold tracking-[0.1em] uppercase", status.className)}>{status.label}</span>;
 };
 
 const MyBorrowList = ({ borrows }: { borrows: Borrow[] }) => {
@@ -69,10 +69,10 @@ const MyBorrowList = ({ borrows }: { borrows: Borrow[] }) => {
 
   return (
     <>
-      <div className="hidden overflow-hidden rounded-2xl border bg-white shadow-sm md:block">
+      <div className="hidden overflow-hidden rounded-lg border bg-card md:block">
         <Table>
           <TableHeader>
-            <TableRow className="bg-gray-50">
+            <TableRow className="bg-muted/60">
               <TableHead className="px-4 py-3">Book</TableHead>
               <TableHead>Borrow Date</TableHead>
               <TableHead>Return Date</TableHead>
@@ -85,7 +85,7 @@ const MyBorrowList = ({ borrows }: { borrows: Borrow[] }) => {
               <TableRow key={borrow._id}>
                 <TableCell className="px-4 py-3">
                   <div className="flex items-center gap-4">
-                    <div className="relative h-16 w-12 shrink-0 overflow-hidden rounded-md bg-gray-100">
+                    <div className="relative h-16 w-12 shrink-0 overflow-hidden rounded-md bg-muted">
                       <Image src={borrow.bookImage} alt={borrow.bookTitle} fill sizes="48px" className="object-contain" />
                     </div>
                     <Link href={getBookLink(borrow.bookId, borrow.bookTitle)} className="max-w-xs truncate font-medium hover:text-primary">
@@ -93,8 +93,8 @@ const MyBorrowList = ({ borrows }: { borrows: Borrow[] }) => {
                     </Link>
                   </div>
                 </TableCell>
-                <TableCell className="text-gray-600">{formatDate(borrow.borrowDate)}</TableCell>
-                <TableCell className="text-gray-600">{formatDate(borrow.returnDate)}</TableCell>
+                <TableCell className="text-foreground/80">{formatDate(borrow.borrowDate)}</TableCell>
+                <TableCell className="text-foreground/80">{formatDate(borrow.returnDate)}</TableCell>
                 <TableCell>
                   <StatusBadge returnDate={borrow.returnDate} />
                 </TableCell>
@@ -112,9 +112,9 @@ const MyBorrowList = ({ borrows }: { borrows: Borrow[] }) => {
 
       <div className="space-y-4 md:hidden">
         {borrows.map((borrow) => (
-          <div key={borrow._id} className="rounded-2xl border bg-white p-4 shadow-sm">
+          <div key={borrow._id} className="rounded-lg border bg-card p-4">
             <div className="flex gap-4">
-              <div className="relative h-24 w-16 shrink-0 overflow-hidden rounded-md bg-gray-100">
+              <div className="relative h-24 w-16 shrink-0 overflow-hidden rounded-md bg-muted">
                 <Image src={borrow.bookImage} alt={borrow.bookTitle} fill sizes="64px" className="object-contain" />
               </div>
               <div className="min-w-0 flex-1">
@@ -127,12 +127,12 @@ const MyBorrowList = ({ borrows }: { borrows: Borrow[] }) => {
               </div>
             </div>
             <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
-              <div className="rounded-lg bg-gray-50 p-2">
-                <p className="text-xs text-gray-500">Borrow Date</p>
+              <div className="rounded-lg bg-muted/60 p-2">
+                <p className="text-xs text-muted-foreground">Borrow Date</p>
                 <p className="font-medium">{formatDate(borrow.borrowDate)}</p>
               </div>
-              <div className="rounded-lg bg-gray-50 p-2">
-                <p className="text-xs text-gray-500">Return Date</p>
+              <div className="rounded-lg bg-muted/60 p-2">
+                <p className="text-xs text-muted-foreground">Return Date</p>
                 <p className="font-medium">{formatDate(borrow.returnDate)}</p>
               </div>
             </div>

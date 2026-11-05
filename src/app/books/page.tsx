@@ -4,6 +4,7 @@ import BookFilters from "@/components/books/BookFilters";
 import BookResults from "@/components/books/BookResults";
 import BookGridSkeleton from "@/components/shared/BookGridSkeleton";
 import { BookFilterValues } from "@/lib/types";
+import PageHeader from "@/components/shared/PageHeader";
 
 export const metadata: Metadata = {
   title: "All Books",
@@ -23,10 +24,7 @@ const AllBooksPage = async ({ searchParams }: PageProps<"/books">) => {
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-12">
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold sm:text-4xl">All Books</h1>
-        <p className="mt-2 text-gray-500">Search and borrow books from our library</p>
-      </div>
+      <PageHeader label="The Library" title="All Books" description="Search the shelves, filter by category and find something good to read." />
 
       <BookFilters filters={filters} />
 

@@ -86,33 +86,33 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="w-full max-w-md rounded-2xl border bg-white p-6 shadow-sm sm:p-8">
-      <h1 className="text-center text-2xl font-bold">Create an Account</h1>
-      <p className="mt-2 text-center text-sm text-gray-500">Join BookNook and start borrowing books</p>
+    <div className="w-full max-w-md rounded-lg border bg-card p-6 sm:p-8">
+      <h1 className="text-center text-3xl uppercase">Create an Account</h1>
+      <p className="mt-2 text-center text-sm text-muted-foreground">Join BookNook and start borrowing books</p>
 
       <form onSubmit={handleRegister} method="post" noValidate className="mt-6 space-y-4">
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
           <Input id="name" name="name" placeholder="Your full name" aria-invalid={Boolean(errors.name)} />
-          {errors.name && <p className="text-sm text-red-600">{errors.name}</p>}
+          {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
         </div>
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
           <Input id="email" name="email" type="email" placeholder="you@example.com" aria-invalid={Boolean(errors.email)} />
-          {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
+          {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
         </div>
         <div className="space-y-2">
           <Label htmlFor="photoURL">Photo URL</Label>
           <Input id="photoURL" name="photoURL" placeholder="https://example.com/photo.jpg" aria-invalid={Boolean(errors.photoURL)} />
-          {errors.photoURL && <p className="text-sm text-red-600">{errors.photoURL}</p>}
+          {errors.photoURL && <p className="text-sm text-destructive">{errors.photoURL}</p>}
         </div>
         <div className="space-y-2">
           <Label htmlFor="password">Password</Label>
           <Input id="password" name="password" type="password" placeholder="Create a password" autoComplete="new-password" aria-invalid={Boolean(errors.password)} />
           {errors.password ? (
-            <p className="text-sm text-red-600">{errors.password}</p>
+            <p className="text-sm text-destructive">{errors.password}</p>
           ) : (
-            <p className="text-xs text-gray-500">At least 6 characters with one uppercase and one lowercase letter</p>
+            <p className="text-xs text-muted-foreground">At least 6 characters with one uppercase and one lowercase letter</p>
           )}
         </div>
 
@@ -122,15 +122,15 @@ const RegisterForm = () => {
         </Button>
       </form>
 
-      <div className="my-5 flex items-center gap-3 text-sm text-gray-400">
-        <span className="h-px flex-1 bg-gray-200" />
+      <div className="my-5 flex items-center gap-3 text-sm text-muted-foreground">
+        <span className="h-px flex-1 bg-border" />
         or
-        <span className="h-px flex-1 bg-gray-200" />
+        <span className="h-px flex-1 bg-border" />
       </div>
 
       <GoogleLoginButton callbackURL="/" />
 
-      <p className="mt-6 text-center text-sm text-gray-500">
+      <p className="mt-6 text-center text-sm text-muted-foreground">
         Already have an account?{" "}
         <Link href="/login" className="font-medium text-primary hover:underline">
           Login

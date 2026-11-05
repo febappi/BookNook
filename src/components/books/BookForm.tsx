@@ -109,12 +109,12 @@ const BookForm = ({ user, book, submitLabel, onSubmit }: BookFormProps) => {
         <div className="space-y-2">
           <Label htmlFor="title">Book Title</Label>
           <Input id="title" name="title" defaultValue={book?.title} placeholder="e.g. The Silent River" aria-invalid={Boolean(errors.title)} />
-          {errors.title && <p className="text-sm text-red-600">{errors.title}</p>}
+          {errors.title && <p className="text-sm text-destructive">{errors.title}</p>}
         </div>
         <div className="space-y-2">
           <Label htmlFor="author">Author Name</Label>
           <Input id="author" name="author" defaultValue={book?.author} placeholder="e.g. Amara Hossain" aria-invalid={Boolean(errors.author)} />
-          {errors.author && <p className="text-sm text-red-600">{errors.author}</p>}
+          {errors.author && <p className="text-sm text-destructive">{errors.author}</p>}
         </div>
         <div className="space-y-2">
           <Label htmlFor="category">Category</Label>
@@ -128,19 +128,19 @@ const BookForm = ({ user, book, submitLabel, onSubmit }: BookFormProps) => {
               </NativeSelectOption>
             ))}
           </NativeSelect>
-          {errors.category && <p className="text-sm text-red-600">{errors.category}</p>}
+          {errors.category && <p className="text-sm text-destructive">{errors.category}</p>}
         </div>
         <div className="space-y-2">
           <Label htmlFor="totalCopies">Total Copies</Label>
           <Input id="totalCopies" name="totalCopies" type="number" min={1} step={1} defaultValue={book?.totalCopies ?? 1} aria-invalid={Boolean(errors.totalCopies)} />
-          {errors.totalCopies && <p className="text-sm text-red-600">{errors.totalCopies}</p>}
+          {errors.totalCopies && <p className="text-sm text-destructive">{errors.totalCopies}</p>}
         </div>
       </div>
 
       <div className="space-y-2">
         <Label htmlFor="image">Book Image</Label>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-          <div className="relative flex h-36 w-28 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-gray-100 text-gray-400">
+          <div className="relative flex h-36 w-28 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-muted text-muted-foreground">
             {imagePreview ? (
               <Image src={imagePreview} alt="Book cover preview" fill sizes="112px" className="object-contain p-1" />
             ) : (
@@ -149,10 +149,10 @@ const BookForm = ({ user, book, submitLabel, onSubmit }: BookFormProps) => {
           </div>
           <div className="flex-1 space-y-1">
             <Input id="image" name="image" type="file" accept="image/*" onChange={handleImageChange} aria-invalid={Boolean(errors.image)} />
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-muted-foreground">
               {book ? "Choose a new image only if you want to replace the current one. " : ""}JPG or PNG, up to 5 MB.
             </p>
-            {errors.image && <p className="text-sm text-red-600">{errors.image}</p>}
+            {errors.image && <p className="text-sm text-destructive">{errors.image}</p>}
           </div>
         </div>
       </div>
@@ -160,17 +160,17 @@ const BookForm = ({ user, book, submitLabel, onSubmit }: BookFormProps) => {
       <div className="space-y-2">
         <Label htmlFor="description">Short Description</Label>
         <Textarea id="description" name="description" defaultValue={book?.description} rows={4} placeholder="What is this book about?" aria-invalid={Boolean(errors.description)} />
-        {errors.description && <p className="text-sm text-red-600">{errors.description}</p>}
+        {errors.description && <p className="text-sm text-destructive">{errors.description}</p>}
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="userName">User Name</Label>
-          <Input id="userName" value={user.name} readOnly className="bg-gray-50" />
+          <Input id="userName" value={user.name} readOnly className="bg-muted/60" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="userEmail">User Email</Label>
-          <Input id="userEmail" value={user.email} readOnly className="bg-gray-50" />
+          <Input id="userEmail" value={user.email} readOnly className="bg-muted/60" />
         </div>
       </div>
 

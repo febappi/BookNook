@@ -57,9 +57,9 @@ const LoginForm = ({ redirectTo, googleError }: { redirectTo: string; googleErro
   };
 
   return (
-    <div className="w-full max-w-md rounded-2xl border bg-white p-6 shadow-sm sm:p-8">
-      <h1 className="text-center text-2xl font-bold">Login to BookNook</h1>
-      <p className="mt-2 text-center text-sm text-gray-500">
+    <div className="w-full max-w-md rounded-lg border bg-card p-6 sm:p-8">
+      <h1 className="text-center text-3xl uppercase">Login to BookNook</h1>
+      <p className="mt-2 text-center text-sm text-muted-foreground">
         {redirectTo === "/" ? "Welcome back! Please enter your details." : "Please login to continue."}
       </p>
 
@@ -78,7 +78,7 @@ const LoginForm = ({ redirectTo, googleError }: { redirectTo: string; googleErro
           <Input id="password" name="password" type="password" placeholder="Enter your password" autoComplete="current-password" />
         </div>
 
-        {errorMessage && <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-600">{errorMessage}</p>}
+        {errorMessage && <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">{errorMessage}</p>}
 
         <Button type="submit" className="w-full" disabled={loading}>
           {loading && <Spinner />}
@@ -86,15 +86,15 @@ const LoginForm = ({ redirectTo, googleError }: { redirectTo: string; googleErro
         </Button>
       </form>
 
-      <div className="my-5 flex items-center gap-3 text-sm text-gray-400">
-        <span className="h-px flex-1 bg-gray-200" />
+      <div className="my-5 flex items-center gap-3 text-sm text-muted-foreground">
+        <span className="h-px flex-1 bg-border" />
         or
-        <span className="h-px flex-1 bg-gray-200" />
+        <span className="h-px flex-1 bg-border" />
       </div>
 
       <GoogleLoginButton callbackURL={redirectTo} />
 
-      <p className="mt-6 text-center text-sm text-gray-500">
+      <p className="mt-6 text-center text-sm text-muted-foreground">
         Don&apos;t have an account?{" "}
         <Link href="/register" className="font-medium text-primary hover:underline">
           Register

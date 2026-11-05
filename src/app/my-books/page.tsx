@@ -5,6 +5,7 @@ import MyBookList from "@/components/books/MyBookList";
 import { buttonVariants } from "@/components/ui/button";
 import { requireUser, getServerToken } from "@/lib/session";
 import { BooksResponse } from "@/lib/types";
+import PageHeader from "@/components/shared/PageHeader";
 
 export const metadata: Metadata = {
   title: "My Books",
@@ -22,29 +23,25 @@ const MyBooksPage = async () => {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-12">
-      <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-        <div>
-          <h1 className="text-3xl font-bold">My Books</h1>
-          <p className="mt-1 text-gray-500">Books you have added to the library</p>
-        </div>
+      <PageHeader label="Your shelf" title="My Books" description="Books you have added to the library.">
         <Link href="/add-book" className={buttonVariants()}>
           <Plus />
           Add a Book
         </Link>
-      </div>
+      </PageHeader>
 
       {!data && (
-        <p className="rounded-2xl border bg-white p-8 text-center text-gray-500">
+        <p className="rounded-lg border bg-card p-8 text-center text-muted-foreground">
           Could not load your books right now. Please try again later.
         </p>
       )}
 
       {data && data.books.length === 0 && (
-        <div className="flex flex-col items-center gap-4 rounded-2xl border border-dashed bg-white px-6 py-16 text-center">
+        <div className="flex flex-col items-center gap-4 rounded-lg border border-dashed bg-card px-6 py-16 text-center">
           <BookPlus className="size-12 text-primary" />
           <div>
             <h2 className="text-xl font-semibold">You have not added any books yet</h2>
-            <p className="mt-2 text-gray-500">Add your first book so other readers can borrow it.</p>
+            <p className="mt-2 text-muted-foreground">Add your first book so other readers can borrow it.</p>
           </div>
           <Link href="/add-book" className={buttonVariants()}>
             Add a Book

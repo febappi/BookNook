@@ -4,7 +4,6 @@ import BookCard from "@/components/shared/BookCard";
 import Reveal from "@/components/shared/Reveal";
 import { buttonVariants } from "@/components/ui/button";
 import { apiFetch } from "@/lib/api";
-import { cn } from "@/lib/utils";
 import { BooksResponse } from "@/lib/types";
 
 const NewArrivals = async () => {
@@ -17,7 +16,7 @@ const NewArrivals = async () => {
 
   if (!data) {
     return (
-      <p className="rounded-2xl border bg-white p-8 text-center text-gray-500">
+      <p className="rounded-lg border bg-card p-8 text-center text-muted-foreground">
         Could not load the books right now. Please try again later.
       </p>
     );
@@ -25,11 +24,11 @@ const NewArrivals = async () => {
 
   if (data.books.length === 0) {
     return (
-      <div className="flex flex-col items-center gap-4 rounded-2xl border border-dashed bg-white px-6 py-14 text-center">
+      <div className="flex flex-col items-center gap-4 rounded-lg border border-dashed bg-card px-6 py-14 text-center">
         <BookPlus className="size-12 text-primary" />
         <div>
           <h3 className="text-xl font-semibold">No books added yet</h3>
-          <p className="mt-2 text-gray-500">Be the first one to add a book to the library.</p>
+          <p className="mt-2 text-muted-foreground">Be the first one to add a book to the library.</p>
         </div>
         <Link href="/add-book" className={buttonVariants()}>
           Add a Book
@@ -40,15 +39,15 @@ const NewArrivals = async () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 border-t border-l border-ink sm:grid-cols-2 lg:grid-cols-3">
         {data.books.map((book, index) => (
-          <Reveal key={book._id} delay={(index % 3) * 0.1} className="h-full">
+          <Reveal key={book._id} delay={(index % 3) * 0.1} className="h-full border-r border-b border-ink">
             <BookCard book={book} />
           </Reveal>
         ))}
       </div>
-      <Reveal className="mt-10 flex justify-center">
-        <Link href="/books" className={cn(buttonVariants({ variant: "outline", size: "lg" }), "border-primary text-primary")}>
+      <Reveal className="mt-8 flex justify-end">
+        <Link href="/books" className={buttonVariants({ size: "lg" })}>
           See All Books
           <ArrowRight data-icon="inline-end" />
         </Link>

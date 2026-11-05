@@ -43,7 +43,7 @@ const UserMenu = ({ user }: { user: SessionUser }) => {
         <DropdownMenuGroup>
           <DropdownMenuLabel className="py-2">
             <p className="truncate text-sm font-semibold text-foreground">{user.name}</p>
-            <p className="truncate text-xs text-gray-500">{user.email}</p>
+            <p className="truncate text-xs text-muted-foreground">{user.email}</p>
           </DropdownMenuLabel>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />

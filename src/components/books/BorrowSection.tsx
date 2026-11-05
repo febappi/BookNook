@@ -84,11 +84,11 @@ const BorrowSection = ({ book, user }: { book: Book; user: SessionUser }) => {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="borrow-name">Name</Label>
-              <Input id="borrow-name" value={user.name} readOnly className="bg-gray-50" />
+              <Input id="borrow-name" value={user.name} readOnly className="bg-muted/60" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="borrow-email">Email</Label>
-              <Input id="borrow-email" value={user.email} readOnly className="bg-gray-50" />
+              <Input id="borrow-email" value={user.email} readOnly className="bg-muted/60" />
             </div>
           </div>
           <DialogFooter>

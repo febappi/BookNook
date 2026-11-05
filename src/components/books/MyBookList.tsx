@@ -60,17 +60,17 @@ const MyBookList = ({ books, user }: { books: Book[]; user: SessionUser }) => {
     <>
       <div className="space-y-4">
         {books.map((book) => (
-          <div key={book._id} className="flex flex-col gap-4 rounded-2xl border bg-white p-4 shadow-sm sm:flex-row sm:items-center">
-            <div className="relative h-40 w-full shrink-0 overflow-hidden rounded-xl bg-gray-100 sm:h-28 sm:w-20">
+          <div key={book._id} className="flex flex-col gap-4 rounded-lg border bg-card p-4 sm:flex-row sm:items-center">
+            <div className="relative h-40 w-full shrink-0 overflow-hidden rounded-xl bg-muted sm:h-28 sm:w-20">
               <Image src={book.image} alt={book.title} fill sizes="(min-width: 640px) 80px, 100vw" className="object-contain p-1" />
             </div>
 
             <div className="min-w-0 flex-1">
               <CategoryBadge category={book.category} />
               <h2 className="mt-2 truncate text-lg font-semibold">{book.title}</h2>
-              <p className="text-sm text-gray-500">by {book.author}</p>
-              <p className="mt-1 text-sm text-gray-500">
-                <span className={book.availableCopies > 0 ? "font-medium text-primary" : "font-medium text-red-500"}>
+              <p className="text-sm text-muted-foreground">by {book.author}</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                <span className={book.availableCopies > 0 ? "font-medium text-primary" : "font-medium text-destructive"}>
                   {book.availableCopies} of {book.totalCopies}
                 </span>{" "}
                 copies available

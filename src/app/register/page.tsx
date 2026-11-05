@@ -14,7 +14,7 @@ const RegisterPage = async () => {
   }
 
   return (
-    <div className="flex flex-1 items-center justify-center bg-gray-50 px-4 py-12">
+    <div className="flex flex-1 items-center justify-center bg-muted/60 px-4 py-12">
       <RegisterForm />
     </div>
   );
